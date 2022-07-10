@@ -10,6 +10,7 @@ function init() {
 
 function onAddTodo(e) {
     e.preventDefault()
+    // this vars shout be puted as global variables. because you create them every time when function called
     const formTextArea = document.querySelector('#todo-text')
     const formInput = document.querySelector('#todo-title')
 
@@ -23,7 +24,7 @@ function onAddTodo(e) {
     //  save if in edit mode / add todo html
     if (editedTodo) {
         const formBtn = document.querySelector('.btn-add')
-
+        // it's unreadable, better add class in necessary place and use element.querySelector(necessaryClassName) to get it and change inner text
         editedTodo.children[0].children[0].innerText = todoTitle;
         editedTodo.children[1].innerText = todoText;
         editedTodo = null;
@@ -31,7 +32,7 @@ function onAddTodo(e) {
         formBtn.innerText = 'Create Todo'
     } else {
         const todoContainer = document.querySelector('.todo-list-container')
-
+        // create html card for todo better put it on separated function.
         todoContainer.innerHTML +=
             `
             <div class="todo-card">
@@ -81,14 +82,14 @@ function editTodo(todo) {
     formBtn.innerText = 'Save Todo'
 
     //  select title and text html elements, set edited elements
-
+    // save with this variables, add class and use querySelector ^) 
     const todoText = todo.children[0].children[0].innerText
     const todoTitle = todo.children[1].innerText
 
     formTextArea.value = todoTitle;
     formInput.value = todoText;
 }
-
+// all global variables should be at top of the file, of function
 let editedTodo = null;
 
 init()
